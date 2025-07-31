@@ -7,7 +7,7 @@ function ConnectToDB() {
         })
         .catch((err) => {
             console.log(err);
-        })
+        });
 }
 
 module.exports = ConnectToDB;
