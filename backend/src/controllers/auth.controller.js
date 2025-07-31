@@ -38,7 +38,7 @@ async function loginController(req, res) {
 
     const { username, password } = req.body;
 
-    const user = userModel.findOne({
+    const user = await userModel.findOne({
         username,
     });
 
