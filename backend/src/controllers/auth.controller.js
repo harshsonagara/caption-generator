@@ -1,6 +1,6 @@
 const userModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
-
+const bcrypt = require('bcryptjs')
 
 async function registerController(req, res) {
 
@@ -18,7 +18,7 @@ async function registerController(req, res) {
 
     const user = await userModel.create({
         username,
-        password,
+        password: await bcrypt.hash(password, 10),
     });
 
     const token = jwt.sign(
@@ -48,7 +48,7 @@ async function loginController(req, res) {
         });
     }
 
-    const isPasswordvalid = user.password === password;
+    const isPasswordvalid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordvalid) {
         return res.status(400).json({
