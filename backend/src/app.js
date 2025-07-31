@@ -9,8 +9,10 @@ app.use(cookie());
 ConnectToDB();
 
 // Routes
-const authRoutes = require('./routes/auth.route')
+const authRoutes = require('./routes/auth.route');
+const postRoutes = require('./routes/post.route')
 app.use('/api/auth', authRoutes);
+app.use('/api/post',postRoutes)
 
 
 module.exports = app;
